@@ -1,4 +1,4 @@
-p{
+/* p{
     color: white;
     background-color: black;
 }
@@ -8,4 +8,61 @@ h2{
 button{
     background-color: blue;
     color: white;
+} */
+
+
+*{
+    font-family:'Courier New';
+   
+}
+h1 , h3{
+    color: brown;
+}
+#login{
+    background-color: gray;
+    color: aliceblue;
+}
+#signup{
+    background-color: brown;
+    color: aliceblue;
+}
+
+.upvote{
+    background-color: green;
+    color: white;
+}
+
+.post a{
+    background-color: yellow;
+    color: hotpink;
+}
+
+
+/* Adjacent sibling combinator */
+
+p + h3{
+    text-decoration: underline;
+}
+
+.upvote + button{
+    background-color: burlywood;
+    color: aliceblue;
+}
+
+
+
+/* Attribute selector */
+
+input[type="text"]{
+    color: green;
+}
+
+input[type="password"]{
+color: red;
+}
+
+#myid p{
+    color: maroon;
+    background-color: yellow;
+    font-weight: bolder;
 }
