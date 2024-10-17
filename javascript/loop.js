@@ -21,12 +21,26 @@
 // }
 
 
-let students = [["Pratikhsa" , 90] ,["Prachi" , 80] , ["Shubho" , 100] , ["Piyu" , 89]];
+// let students = [["Pratikhsa" , 90] ,["Prachi" , 80] , ["Shubho" , 100] , ["Piyu" , 89]];
 
-for(let i=0 ; i<students.length ; i++){
-    console.log(` info of  ${i+1} student `);
-    for(let j = 0 ; j < students[i].length ; j++){
-        console.log(j+1 , students[i][j]);
+// for(let i=0 ; i<students.length ; i++){
+//     console.log(` info of  ${i+1} student `);
+//     for(let j = 0 ; j < students[i].length ; j++){
+//         console.log(j+1 , students[i][j]);
+//     }
+
+// }
+
+
+
+// for of loop
+
+let frds = [["Chinki" , "Minki" , "Chunu"] , ["Munnu" , "Bunty" , "Totthe"]];
+for(let frd of frds){
+    console.log(frd);
+    for(let individual of frd ){
+        console.log(individual);
     }
-
 }
+
+
