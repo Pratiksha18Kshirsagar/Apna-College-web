@@ -9,8 +9,12 @@ while (true) {
        
     }
     else if (input == "list") {
-        for (let i = 0; i < task.length; i++) {
-            console.log(task[i]);
+        // for (let i = 0; i < task.length; i++) {
+        //     console.log(task[i]);
+        // }
+        for (let item of task) {
+            console.log(item);
+            
         }
     }
     else if (input == "delete") {
