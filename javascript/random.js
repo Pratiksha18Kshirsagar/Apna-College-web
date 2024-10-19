@@ -1,12 +1,12 @@
 
-// 
-
-// let random = Math.floor(Math.random()*5)+20;
-// console.log(random);
 
 
-let dice = Math.floor(Math.random()*6)+1;
-console.log(dice);
+let random = Math.floor(Math.random()*1000)+1;
+console.log(random);
+
+
+
+
 
 let car = {
     name : "BMW" , 
@@ -15,3 +15,6 @@ let car = {
 }
 
 console.log(car.name);
+
+
+

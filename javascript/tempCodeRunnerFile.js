@@ -1,3 +1,6 @@
-for(let individual of frd ){
-    //     console.log(individual);
-    // }
+let largestlength = country[0].length; 
+// for (let i = 0; i < country.length; i++) {
+//     if()
+      
+    
+// }
