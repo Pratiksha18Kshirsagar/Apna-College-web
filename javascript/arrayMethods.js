@@ -39,3 +39,5 @@ let sum = value.reduce((res,el)=>{
 return res+el;
 });
 console.log(sum);
+
+
