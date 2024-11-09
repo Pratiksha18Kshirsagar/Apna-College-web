@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.box {
+    height: 200px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 20px;
+
+}
+
+.box1 {
+    background-color: rgb(237, 17, 127);
+}
+
+.box2 {
+    background-color: rgb(150, 221, 43);
+}
+
+.box3 {
+    background-color: yellow;
+}
+
+.box4 {
+    background-color: rgb(118, 4, 130);
+}
+
+.flash{
+    background-color: white;
+}
