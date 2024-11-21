@@ -18,18 +18,19 @@ function changeColor(color, delay) {
 
 
 async function demo() {
-    try{await changeColor("violet", 1000);
+    try {
+        await changeColor("violet", 1000);
         await changeColor("blue", 1000);
         await changeColor("indigo", 1000);
         await changeColor("green", 1000);
         await changeColor("yellow", 1000);
         await changeColor("orange", 1000);
         await changeColor("red", 1000);
-    }catch(err){
+    } catch (err) {
         console.log(err);
-        console.log("error caught")
+        console.log("error caught");
     }
-    
+
 
     let num = 5;
     console.log(num)
@@ -47,4 +48,3 @@ demo();
 //     console.log("green is completed");
 //     return changeColor("hotpink" , 1000);
 // })
-
