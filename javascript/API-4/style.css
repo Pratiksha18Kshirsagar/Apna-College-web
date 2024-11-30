@@ -8,7 +8,11 @@ body{
     flex-direction: column;
    
 }
-
+h1{
+    font-size: 40px;
+    font-family: sans-serif;
+    color: yellow; 
+}
 .container {
     height: 150px;
     width: 500px;
@@ -38,8 +42,13 @@ button{
 .word{
     font-size: 30px;
     text-align: left;
+    color: red;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    font: bolder;
 }
 .mean {
     width: 500px;
     font-size: 25px;
+    color: rgb(242, 240, 240);
 }
