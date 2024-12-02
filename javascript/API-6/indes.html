@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: monospace;
+        }
+
+        .container {
+            background-color: #814bf5;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .main {
+            height: 50vh;
+            width: 25vw;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            border-radius: 0.4rem;
+
+        }
+
+        .sub {
+            height: 30vh;
+            width: 20vw;
+            background-color: blue;
+            border-radius: 0.4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button {
+            background-color: #814bf5;
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 0.4rem;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 6px;
+            border: none;
+            border-bottom: 1px solid purple;
+        }
+
+        p {
+            color: white;
+            font-size: 20px;
+        }
+
+        .emo {
+            font-size: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <h2>PREDICT GENDER BY NAME!</h2>
+            <div class="in"> 
+                <input type="text" name="" id="" placeholder="Enter Name!!">
+                <button>Predict</button>
+            </div>
+
+            <div class="sub">
+                <p class="name"></p>
+                <p class="emo"></p>
+                <p class="gender"></p>
+                <p class="prob"></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
