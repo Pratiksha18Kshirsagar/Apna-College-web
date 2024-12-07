@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            
+        }
+
+        .nav {
+            height: 10vh;
+            width: 100vw;
+            background-color: aliceblue;
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .search {
+            background-color: red;
+            color: white;
+            padding: 0.8em;
+            border: none;
+            border-radius: 0.2em;
+            font-size: 15px;
+        }
+
+        input {
+            padding: 10px;
+            width: 45vw;
+            margin-right: 10px;
+        }
+
+        .nav-sub {
+            margin-top: 15px;
+        }
+
+        h2{
+            margin-top: 15px;
+            font-size:30px;
+        }
+        .h{
+            font-size: 60px;
+            color: white;
+        }
+        .main{
+            height: max-content;
+            width: 100vw;
+            background-color: black;
+            margin-top: 10px;
+            border-radius: 2px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+          
+        }
+        .img{
+            height: 200px;
+            width: 280px;
+            border-radius: 4px 4px 0px 0px;
+        }
+        .title{
+            /* color: white; */
+            font-size: 22px;
+            font-weight: 900;
+
+        }
+        .Recipe{
+            background-color: red;
+            border: none;
+            padding: 10px;
+            color: white;
+            margin-bottom: 8px;
+            border-radius: 4px;
+        }
+        .card{
+            height: 310px;
+            width: 280px;
+            background-color: white;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <h2>Recipe App</h2>
+            <div class="nav-sub">
+                <input type="text" placeholder="Search for Recipe's!!">
+                <button class="search">Search</button>
+            </div>
+        </div>
+      
+            <div class="main">
+               
+            
+
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
