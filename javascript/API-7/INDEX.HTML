@@ -15,7 +15,7 @@
             width: 100vw;
             height: 100vh;
             background-color: black;
-            
+
         }
 
         .nav {
@@ -46,15 +46,17 @@
             margin-top: 15px;
         }
 
-        h2{
+        h2 {
             margin-top: 15px;
-            font-size:30px;
+            font-size: 30px;
         }
-        .h{
+
+        .h {
             font-size: 60px;
             color: white;
         }
-        .main{
+
+        .main {
             height: max-content;
             width: 100vw;
             background-color: black;
@@ -64,20 +66,23 @@
             flex-wrap: wrap;
             gap: 20px;
             justify-content: space-around;
-          
+
         }
-        .img{
+
+        .img {
             height: 200px;
             width: 280px;
             border-radius: 4px 4px 0px 0px;
         }
-        .title{
+
+        .title {
             /* color: white; */
             font-size: 22px;
             font-weight: 900;
 
         }
-        .Recipe{
+
+        .Recipe {
             background-color: red;
             border: none;
             padding: 10px;
@@ -85,7 +90,8 @@
             margin-bottom: 8px;
             border-radius: 4px;
         }
-        .card{
+
+        .card {
             height: 310px;
             width: 280px;
             background-color: white;
@@ -94,9 +100,17 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-
-
-
+        }
+        h1{
+            color: white;
+            font-size: 48px;
+            text-align: center;
+            text-shadow: 0px 0px 8px pink;
+        }
+        span{
+            color: burlywood;
+            text-shadow: 0px 0px 8px greenyellow;
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -110,13 +124,25 @@
                 <button class="search">Search</button>
             </div>
         </div>
-      
-            <div class="main">
-               
-            
+
+        <div class="main">
+            <h1>Search Your Favorite <span id="recipe-text">Recipes!!</span>👩🏻‍🍳🍗😋</h1>
+
+
 
         </div>
     </div>
+    <script>
+        const colors = ["plum", "greenyellow", "aqua", "yellow", "pink", "orange", "purple" , "brown" , "hotpink"];
+        const recipeText = document.getElementById("recipe-text");
+
+        let currentColorIndex = 0;
+
+        setInterval(() => {
+            recipeText.style.color = colors[currentColorIndex];
+            currentColorIndex = (currentColorIndex + 1) % colors.length; // Loop through the colors
+        }, 1000);
+    </script>
     <script src="./script.js"></script>
 </body>
 

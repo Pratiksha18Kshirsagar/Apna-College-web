@@ -7,6 +7,9 @@ let userInput;
 let searchBtn = document.querySelector(".search");
 let main = document.querySelector(".main");
 
+
+// let view = document.querySelector(".Recipe");
+
 async function SearchRecipe() {
     try {
         userInput = input.value;
@@ -21,16 +24,10 @@ async function SearchRecipe() {
         card.innerHTML = ` <img class = "img" src=${meal.strMealThumb} alt="">
             <p class = "title" >${meal.strMeal}</p >
                 <button class = "Recipe">View Recipe</button>`
-                
-
-
     }
     } catch (error) {
         main.innerHTML = `<h1 class = "h">"Oops!! No Recipe Found 🤦‍♀️"</h1>`
     }
-    
-
-
 }
 
 searchBtn.addEventListener("click", () => {
