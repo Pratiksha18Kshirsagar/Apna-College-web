@@ -13,4 +13,6 @@ const student = {
     }
 }
 
-// console.log(student);
+
+
+console.log(student.prop);

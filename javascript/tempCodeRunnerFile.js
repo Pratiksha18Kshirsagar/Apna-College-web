@@ -1,13 +1,2 @@
-
-// let id = setInterval(() => {
-//     console.log("hello world!!")
-    
-// }, 2000);
-
-
-
-
-// setTimeout(() => {
-//     clearInterval(id)
-//     console.log("Clear interval!!")
-// }, 12000);
+console.log(...arr);
+console.log(arr);
