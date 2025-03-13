@@ -1,10 +1,12 @@
 const express = require("express");
+const methodOverride = require('method-override')
 const app = express();
 const port = 8080;
 const path = require("path");
 const { v4: uuidv4 } = require('uuid');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'))
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -62,7 +64,7 @@ app.patch("/posts/:id", (req, res) => {
     post.content = newContent;
     console.log(newContent);
     console.log(id);
-    res.send("working");
+    res.redirect("/posts");
 })
 
 app.get("/posts/:id/edit" , (req,res)=>{
@@ -71,4 +73,11 @@ app.get("/posts/:id/edit" , (req,res)=>{
     let post = posts.find((p) => { return id === p.id });
     console.log(post);
     res.render("edit.ejs" , {post});
+}) 
+
+app.delete("/posts/:id" , (req,res)=>{
+    let  {id} = req.params;
+    posts = posts.filter((p) => { return id !== p.id });
+    res.redirect("/posts");
+
 })
