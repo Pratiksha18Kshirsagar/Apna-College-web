@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 2px solid black;
+        }
+        a{
+            background-color: black;
+            color:white;
+            font-size: xx-large;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="http://localhost:8080/user/new">Add User!</a>
+    <br>
+    
+    <hr>
+
+    <table>
+        <tr>
+            <th>id</th>
+            <th>email</th>
+            <th>userName</th>
+            <th>password</th>
+        </tr>
+
+        <%for (const user of users) {%>
+            <tr>
+                <td>
+                    <%=user.id%>
+                </td>
+                <td>
+                    <%=user.email%>
+                </td>
+                <td>
+                    <%=user.username%>
+                </td>
+                <td>
+                    <%=user.password%>
+                </td>
+                <td>
+                    <form action="/user/<%=user.id%>/editPass" method="get">
+                        <button>Change password</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/user/<%=user.id%>/edit" method="get">
+                        <button>Edit username</button>
+                    </form>
+                    <!-- <a href="http://localhost:8080/user/<%=user.id%>/edit">Edit username</a> -->
+                </td>
+                <td>
+                    <form action="/user/<%=user.id%>/delete" method="get">
+                        <button>Delete</button>
+                    </form>
+                </td>
+                
+            </tr>
+            <% }%>
+
+    </table>
+</body>
+
+</html>

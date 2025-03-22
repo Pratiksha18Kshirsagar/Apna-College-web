@@ -57,6 +57,15 @@ app.get("/posts/:id", (req, res) => {
     // res.send("working!!")
 })
 
+
+app.get("/posts/:id/edit" , (req,res)=>{
+    let  {id} = req.params;
+    console.log(id);
+    let post = posts.find((p) => { return id === p.id });
+    console.log(post);
+    res.render("edit.ejs" , {post});
+}) 
+
 app.patch("/posts/:id", (req, res) => {
     let { id } = req.params;
     let newContent = req.body.content;
@@ -67,13 +76,7 @@ app.patch("/posts/:id", (req, res) => {
     res.redirect("/posts");
 })
 
-app.get("/posts/:id/edit" , (req,res)=>{
-    let  {id} = req.params;
-    console.log(id);
-    let post = posts.find((p) => { return id === p.id });
-    console.log(post);
-    res.render("edit.ejs" , {post});
-}) 
+
 
 app.delete("/posts/:id" , (req,res)=>{
     let  {id} = req.params;
@@ -81,3 +84,5 @@ app.delete("/posts/:id" , (req,res)=>{
     res.redirect("/posts");
 
 })
+
+

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>You are above to Change this user password : <%=user.username%>
+    </h2>
+    <form method="post" action="/user/<%=user.id%>/updatePassword?_method=PATCH">
+        <input type="password" name="password" placeholder="currentPassword">
+        <input type="password" placeholder="newPassword" name="newPassword">
+        <button>Submit</button>
+    </form>
+</body>
+</html>
