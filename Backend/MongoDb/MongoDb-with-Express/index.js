@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const path = require("path");
 const Chat = require("./Models/chat");
 const methodOverride = require("method-override");
+const expresserror = require("./ExpressError");
 
 
 app.use(methodOverride("_method"))
@@ -11,6 +12,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }))
+
 
 
 //mongoose
@@ -36,10 +38,15 @@ app.get("/chats", async (req, res) => {
 })
 
 
+
+
 //add new
 app.get("/chats/new", (req, res) => {
+    
     res.render("new.ejs");
 })
+
+
 
 app.post("/chats", (req, res) => {
     let { from, to, msg } = req.body;
@@ -95,6 +102,12 @@ app.delete("/chats/:id/delete", async (req, res) => {
 
 
 
+app.use( (err,req,res,next)=>{
+    let{status , message} = err;
+    res.status(status).send(message);
+})
+
 app.listen(8080, () => {
     console.log("Server is listening on port 8080!!")
 })
+
