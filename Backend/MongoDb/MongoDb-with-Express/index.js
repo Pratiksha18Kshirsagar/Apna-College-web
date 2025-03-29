@@ -42,7 +42,7 @@ app.get("/chats", async (req, res) => {
 
 //add new
 app.get("/chats/new", (req, res) => {
-    
+
     res.render("new.ejs");
 })
 
@@ -67,17 +67,37 @@ app.post("/chats", (req, res) => {
     res.redirect("/chats");
 })
 
+//asyncWrap
+function asyncWrap(fn) {
+    return function (req, res, next) {
+        fn(req, res, next).catch((err) => {
+            next(err);
+        });
+    }
+}
+
+//show route
+app.get("/chats/:id", asyncWrap(async (req, res ,next) => {
+    let { id } = req.params;
+    let chat = await Chat.findById(`${id}`);
+    if (!chat) {
+        next(new expresserror(500, "chat not found"));
+    }
+    res.render("edit.ejs", { chat });
+}));
+
+
 
 //update
-app.get("/chats/:id/edit", async (req, res) => {
+app.get("/chats/:id/edit",asyncWrap( async (req, res , next) => {
     let { id } = req.params;
     let chat = await Chat.findById(`${id}`);
     console.log(chat);
     res.render("edit.ejs", { chat });
-})
+}))
 
 
-app.patch("/chats/:id", (req, res) => {
+app.patch("/chats/:id",  (req, res) => {
     let { id } = req.params;
     console.log(id);
     let { msg } = req.body;
@@ -93,17 +113,17 @@ app.patch("/chats/:id", (req, res) => {
 
 
 //delete
-app.delete("/chats/:id/delete", async (req, res) => {
+app.delete("/chats/:id/delete", asyncWrap( async (req, res , next) => {
     let { id } = req.params;
     console.log(id);
     await Chat.findByIdAndDelete(id)
     res.redirect("/chats");
-})
+}))
 
 
 
-app.use( (err,req,res,next)=>{
-    let{status , message} = err;
+app.use((err, req, res, next) => {
+    let { status = 402 , message = "Page not found" } = err;
     res.status(status).send(message);
 })
 
