@@ -6,9 +6,9 @@ const path = require("path");
 const listing = require("./models/listing.js")
 const methodOverride = require('method-override')
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
+const wrapAsync = require("./utils/wrapAsync.js")
+const { listingSchema } = require("./schema.js");
 const ExpressError = require("./utils/expressError.js");
-const {listingSchema} = require("./schema.js");
 
 //ejs setup!
 app.set("view engine", "ejs");
@@ -30,8 +30,8 @@ async function main() {
 
 
 //start server!
-app.listen(8080, () => {
-    console.log("server is listening on port 8080!!");
+app.listen(3000, () => {
+    console.log("server is listening on port 3000!!");
 })
 
 
@@ -41,55 +41,66 @@ app.get("/", (req, res) => {
 })
 
 
+const validateListing = (req, res, next) => {
+    let { error } = listingSchema.validate(req.body);
+    console.log(error.details)
+    if (error) {
+        let errMsg = error.details.map((el) => el.message).join(",");
+        throw new ExpressError(400, errMsg);
+    }
+    else{
+        next();
+    }
+
+};
+
+
 //index route
-app.get("/listings", async (req, res) => {
+app.get("/listings", wrapAsync(async (req, res) => {
     const allListings = await listing.find();
     res.render("./listings/index.ejs", { allListings });
-})
+}))
 
 
 
 //show route
-app.get("/listings/:id/show", async (req, res) => {
+app.get("/listings/:id/show", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const detaillist = await listing.findById(id);
     console.log(detaillist);
     res.render("./listings/show.ejs", { detaillist });
-})
+}))
 
 //create
 app.get("/listings/new", (req, res) => {
     res.render("./listings/new.ejs");
 })
 
-app.post("/listings", wrapAsync(async (req, res, next) => {
+app.post("/listings", validateListing, wrapAsync(async (req, res) => {
     // let { title, description, price, location, country } = req.body;
-   let result =  listingSchema.validate(req.body);
-   console.log(result)
-    if (!req.body) {
-        throw new ExpressError(400, "send valid listing-create");
-    }
     const Listing = new listing(req.body);
+    // if(!req.body) {
+    //     throw new Expresserror("Send Valid Listing", 400);
+    // }
     await Listing.save();
     console.log(req.body);
     res.redirect("/listings");
 }))
 
 //edit route
-app.get("/listings/:id/edit", async (req, res) => {
+app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const detaillist = await listing.findById(id);
     res.render("./listings/edit.ejs", { detaillist });
-})
+}))
 
 //edit patch
-app.patch("/listings/:id", wrapAsync(async (req, res, next) => {
-    if (!req.body) {
-        throw new ExpressError(400, "send valid listing-update");
-    }
+app.patch("/listings/:id", validateListing, wrapAsync(async (req, res) => {
     console.log(req.body);
+    // if (!req.body) {
+    //     throw new ExpressError(400, "Send Valid Listing",);
+    // }
     await listing.findByIdAndUpdate(req.params.id, req.body);
-
     res.redirect("/listings");
 
 }))
@@ -101,14 +112,11 @@ app.delete("/listings/:id/delete", (req, res) => {
     res.redirect("/listings");
 })
 
-
 app.all("*", (req, res, next) => {
-    next(new ExpressError(404, "oops 😞 Page not found!!"))
-})
+    next(new ExpressError(404, "Page Not Found!!",));
+});
 
-
-//error handling middleware
 app.use((err, req, res, next) => {
-    let { statusCode = 500, message = "Something went wrong 🍗 khao!" } = err;
+    let { statusCode = 500, message = "Something Error Occured" } = err;
     res.status(statusCode).render("error.ejs", { message });
-})
+});

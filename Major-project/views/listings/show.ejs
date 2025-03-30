@@ -18,7 +18,7 @@
                             <%=detaillist.description%>
                                 <br>
                                 &#8377;
-                                <%=detaillist.price.toLocaleString("en-IN")%>
+                                <%=detaillist.price ? detaillist.price.toLocaleString("en-IN") : "Price not available" %> / night
                                     <br>
                                     <%=detaillist.location%>
                                         <br>
