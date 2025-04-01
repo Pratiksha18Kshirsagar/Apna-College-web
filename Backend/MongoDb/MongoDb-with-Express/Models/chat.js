@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const schema = mongoose.Schema;
 
-const chatSchema = new mongoose.Schema({
+const chatSchema = new schema({
     from: {
         type: String,
         required: true
@@ -19,6 +20,8 @@ const chatSchema = new mongoose.Schema({
     },
 })
 
+
+//default collection chats will be created!!
 const Chat = mongoose.model("Chat" , chatSchema);
 
 module.exports = Chat;

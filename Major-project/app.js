@@ -91,6 +91,9 @@ app.post("/listings", validateListing, wrapAsync(async (req, res) => {
 app.get("/listings/:id/edit", wrapAsync(async (req, res) => {
     let { id } = req.params;
     const detaillist = await listing.findById(id);
+    if(!detaillist){
+        throw new ExpressError(400 , "Id not found!")
+    }
     res.render("./listings/edit.ejs", { detaillist });
 }))
 
