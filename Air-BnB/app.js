@@ -3,7 +3,8 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-const listing = require("./models/listing.js")
+const listing = require("./models/listing.js");
+const Review = require("./models/reviews.js");
 const methodOverride = require('method-override')
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync.js")
@@ -113,6 +114,20 @@ app.delete("/listings/:id/delete", (req, res) => {
     listing.findByIdAndDelete(req.params.id).then((result) => { console.log("successfully updated!!"); })
     res.redirect("/listings");
 })
+
+//review post route
+app.post("/listings/:id/reviews" , async(req,res)=>{
+  let listing1 =   await listing.findById(req.params.id);
+  let review = new Review(req.body.review);
+  listing1.reviews.push(review);
+  await review.save();
+  await listing1.save();
+
+  
+  console.log("review");
+
+})
+
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page Not Found!!",));

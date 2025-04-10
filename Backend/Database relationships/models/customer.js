@@ -25,6 +25,15 @@ const customerSchema = new schema({
 
 })
 
+//post delete middleware
+customerSchema.post("findOneAndDelete" , async(customer)=>{
+    if(customer.orders.length){
+      let result=  await Order.deleteMany({_id:{$in: customer.orders}});
+      console.log(result);
+      console.log("deleted")
+    }
+})
+
 //collection
 const Order = mongoose.model("Order", orderSchema);
 const Customer = mongoose.model("Customer" , customerSchema);
@@ -44,7 +53,8 @@ const addCustomer = async()=>{
 
 }
 
-addCustomer();
+// 
+// addCustomer();
 
 //populate 
 const findcustomer = async()=>{
@@ -65,3 +75,11 @@ const addorder = async () => {
 }
 
 // addorder();
+
+
+//delete function
+const Delete = async()=>{
+let res = await Customer.findByIdAndDelete('67f74d03348960c9ed182ae2');
+console.log(res);
+}
+Delete();
