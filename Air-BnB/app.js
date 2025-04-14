@@ -36,9 +36,12 @@ passport.use(new LocalStratergy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+//localsss res.locals (for passing data to views)
 app.use((req,res,next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
     next();
 })
 
@@ -70,17 +73,6 @@ app.listen(3000, () => {
 app.get("/", (req, res) => {
     res.send("i m root !!");
 })
-
-//passport 
-app.get("/demouser" , async(req,res)=>{
-let fakeuser = new User({
-    email:"abc@gmail.com",
-    username:"Pratiksha"
-})
-let registeredUser = await User.register(fakeuser , "helloworld");
-res.send(registeredUser);
-})
-
 
 
 //express router for listings!
