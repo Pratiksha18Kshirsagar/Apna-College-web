@@ -22,17 +22,15 @@ module.exports.saveRedirectUrl = (req, res , next)=>{
     if(req.session.redirectUrl){
      res.locals.redirectUrl = req.session.redirectUrl;
     }
-   
     next();
-
 }
 
 module.exports.isOwner = async(req,res,next)=>{
     let{id} = req.params;
     console.log(id);
-    let listing =await Listing.findById(id);
+    let listing = await Listing.findById(id);
     if(!listing.owner._id.equals(res.locals.currUser)){
-        req.flash("error" , "You are not permitted to this☹️")
+        req.flash("error" , "You are not permitted to this☹️");
         return res.redirect(`/listings/${id}/show`);
     }
     next();
@@ -44,7 +42,7 @@ module.exports.isReviewAuthor = async(req,res,next)=>{
     let review =await Review.findById(reviewId);
     console.log(res.locals.currUser);
     if(!review.author._id.equals(res.locals.currUser._id)){
-        req.flash("error" , "You are not the author to this☹️")
+        req.flash("error" , "You are not the author to this☹️");
         return res.redirect(`/listings/${id}/show`);
     }
     next();
