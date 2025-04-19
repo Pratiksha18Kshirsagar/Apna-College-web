@@ -8,7 +8,7 @@
                 <br><br>
                 <h2>Edit your listing!</h2>
                 <form action="/listings/<%=detaillist._id%>?_method=PATCH" method="post" novalidate
-                    class="needs-validation">
+                    class="needs-validation" enctype="multipart/form-data">
                     <div class="mb-3"><label class="form-label" for="title">Title</label>
                         <input type="text" value="<%=detaillist.title%>" name="title" placeholder="Add a catchy title"
                             class="form-control" required>
@@ -22,10 +22,16 @@
                         <div class="valid-feedback"> good!</div>
                         <div class="invalid-feedback">Please enter a short Description!</div>
                     </div>
-                    <div class="mb-3"><label class="form-label" for="image">Image</label>
-                        <input type="text" value="<%=detaillist.image%>" name="image" class="form-control" placeholder="enter url/link" required>
+                     <div>
+                        original image!!
+                        <br>
+                        <img src="<%=originalImage%>" alt="">
+                     </div>
+
+                    <div class="mb-3"><label class="form-label" for="image">Upload New Image</label>
+                        <input type="file" value="<%=detaillist.image%>" name="image" class="form-control" placeholder="enter url/link" >
                         <div class="valid-feedback"> good!</div>
-                        <div class="invalid-feedback">Please enter image url!</div>
+                        <div class="invalid-feedback">Please upload image!</div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-4"><label class="form-label" for="price">Price</label>

@@ -1,3 +1,9 @@
+if (process.env.NODE_ENV != "production") {
+    require('dotenv').config();
+}
+
+
+
 //require the packages!
 const express = require("express");
 const app = express();
@@ -13,15 +19,15 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStratergy = require("passport-local");
-const User = require("./models/user.js"); 
+const User = require("./models/user.js");
 
 const sessionOptions = {
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie:{
-        expires:Date.now()+7*24*60*60*1000,
-        maxAge: 7*24*60*60*1000,
+    cookie: {
+        expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true
     }
 }
@@ -38,7 +44,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //localsss res.locals (for passing data to views)
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
@@ -78,7 +84,7 @@ app.get("/", (req, res) => {
 //express router for listings!
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
-app.use("/" ,userRouter );
+app.use("/", userRouter);
 
 
 

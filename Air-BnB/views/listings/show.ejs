@@ -10,7 +10,7 @@
                 </h2>
 
                 <div class="card listing-card">
-                    <img src="<%=detaillist.image%>" class="card-img-top show-img-top" alt="listing image">
+                    <img src="<%=detaillist.image.url%>" class="card-img-top show-img-top" alt="listing image">
                     <div class="card-body">
                         <p class="card-text">Owned by : <%=detaillist.owner.username%>
                         </p>
@@ -58,8 +58,7 @@
                         <div class="mb-3 mt-3">
                             <label for="rating" class="form-label">Rating:</label>
                             <fieldset class="starability-slot">
-                                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked
-                                    aria-label="No rating." />
+                                <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
                                 <input type="radio" id="first-rate1" name="rating" value="1" />
                                 <label for="first-rate1" title="Terrible">1 star</label>
                                 <input type="radio" id="first-rate2" name="rating" value="2" />

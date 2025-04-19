@@ -27,9 +27,10 @@ module.exports.saveRedirectUrl = (req, res , next)=>{
 
 module.exports.isOwner = async(req,res,next)=>{
     let{id} = req.params;
-    console.log(id);
     let listing = await Listing.findById(id);
-    if(!listing.owner._id.equals(res.locals.currUser)){
+    console.log(listing);
+    console.log(res.locals.currUser);
+    if(!listing.owner._id.equals(res.locals.currUser._id)){
         req.flash("error" , "You are not permitted to this☹️");
         return res.redirect(`/listings/${id}/show`);
     }
