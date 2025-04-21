@@ -16,13 +16,15 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/reviews.js");
 const userRouter = require("./routes/user.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStratergy = require("passport-local");
 const User = require("./models/user.js");
 
 const sessionOptions = {
-    secret: 'keyboard cat',
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -31,6 +33,20 @@ const sessionOptions = {
         httpOnly: true
     }
 }
+
+const dbUrl = process.env.ATLASDB_URL;
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: process.env.SECRET,
+        touchAfter:24*3600,
+      }
+  })
+  //to handel session error
+  store.on("error" , (err)=>{
+    console.log("error in mongo session store" , err);
+  });
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -42,6 +58,15 @@ passport.use(new LocalStratergy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+
+//mongoose connection!
+main().then((res) => {
+    console.log(res);
+}).catch(err => console.log(err));
+async function main() {
+    await mongoose.connect(dbUrl)
+}
 
 //localsss res.locals (for passing data to views)
 app.use((req, res, next) => {
@@ -61,13 +86,7 @@ app.use(methodOverride('_method'))
 app.engine('ejs', ejsMate);
 
 
-//mongoose connection!
-main().then((res) => {
-    console.log(res);
-}).catch(err => console.log(err));
-async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/wanderLust")
-}
+
 
 
 //start server!
@@ -75,10 +94,6 @@ app.listen(3000, () => {
     console.log("server is listening on port 3000!!");
 })
 
-//root route!
-app.get("/", (req, res) => {
-    res.send("i m root !!");
-})
 
 
 //express router for listings!

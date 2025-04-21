@@ -1,8 +1,9 @@
 <% layout("./layouts/boilerplate.ejs")%>
-
-
-    <body>
-
+<script>
+    const mapToken = "<%=process.env.MAP_TOKEN%>";
+    const detaillist = <%-JSON.stringify(detaillist)%>;
+</script>
+<body>
         <div class="row">
             <div class="col-8 offset-2">
                 <h2>
@@ -40,7 +41,6 @@
                             </form>
                         </div>
                         <%}%>
-
                 </div>
             </div>
 
@@ -83,6 +83,7 @@
 
                     <hr>
                     <%}%>
+                    <%if(detaillist.reviews.length > 0 ){%>
                         <b>
                             <h4>All Reviews!!</h4>
                         </b>
@@ -104,7 +105,14 @@
 
                                 <%}%>
                         </div>
-
+                    <%}%>
             </div>
+            <div class="col-8 offset-2 mb-3">
+                <h3>Where you'll be</h3>
+                <div id="map"> </div>
+            </div>
+            
         </div>
+        <script src="/js/map.js"></script>
+       
     </body>
