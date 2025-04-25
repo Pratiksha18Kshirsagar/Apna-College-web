@@ -57,11 +57,15 @@ export default function TodoList() {
     let markAsDone = (id) => {
         setTodos((prevTodo) => {
             return prevTodo.map((todo) => {
-                if (todo.id === id && !todo.isDone) {
-                    return { ...todo, isDone: true }
-                }
-                else {
-                    return { ...todo, isDone: false }
+                if (todo.id === id) {
+                    if (!todo.isDone) {
+                        return { ...todo, isDone: true }
+                    }
+                    else {
+                        return { ...todo, isDone: false }
+                    }
+                }else{
+                    return {...todo}
                 }
             })
         })

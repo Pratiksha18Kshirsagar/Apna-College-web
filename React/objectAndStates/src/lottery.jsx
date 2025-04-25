@@ -2,7 +2,7 @@ import { use, useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 
 export default function Lottery() {
-    let [student, setStudent] = useState([{ name: "Pratiksha", id: uuidv4(), isPresent: true }]);
+    let [student, setStudent] = useState([{ name: "Pratiksha", id: uuidv4(), isPresent: false }]);
     let [tempStu, setTempstu] = useState("");
 
     let newStu = (event) => {
@@ -27,17 +27,21 @@ export default function Lottery() {
     let attendence = (id) => {
         setStudent((preStu) => {
             return preStu.map((stu) => {
-                if (stu.id === id && !stu.isPresent) {
-                    return { ...stu, isPresent: true }
-                }
-                else {
-                    return { ...stu, isPresent: false }
+                if (stu.id === id) {
+                    if (!stu.isPresent) {
+                        return { ...stu, isPresent: true }
+                    }
+                    else {
+                        return { ...stu, isPresent: false }
+                    }
+                }else{
+                    return {...stu}
                 }
             }
             )
         })
-
     }
+
     return (
         <>
             <h1>students</h1>
@@ -48,7 +52,7 @@ export default function Lottery() {
             <hr />
             <ol>
                 {student.map((stu) => {
-                    return <li key={stu.id}> {!stu.isPresent ? <span style={{color:"green"}}>{stu.name}</span>:<span style={{color:"red"}}>{stu.name}</span>}&nbsp;&nbsp; <button onClick={() => deleteStu(stu.id)}>Delete</button>&nbsp;&nbsp;<button onClick={() => attendence(stu.id)}>Mark-Attendence</button> </li>
+                    return <li key={stu.id}> {!stu.isPresent ? <span style={{ color: "red" }}>{stu.name}</span> : <span style={{ color: "green" }}>{stu.name}</span>}&nbsp;&nbsp; <button onClick={() => deleteStu(stu.id)}>Delete</button>&nbsp;&nbsp;<button onClick={() => attendence(stu.id)}>Mark-Attendence</button> </li>
                 })}
             </ol>
         </>
