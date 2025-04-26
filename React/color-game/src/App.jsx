@@ -1,12 +1,12 @@
-import Lottery from './Lottery2'
 import './App.css'
+import Color from './color'
 
 function App() {
 
 
   return (
     <>
-      <Lottery n = {4} isWinning={30}/>
+      <Color />
     </>
   )
 }
