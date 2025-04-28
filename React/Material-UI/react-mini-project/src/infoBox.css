@@ -1,0 +1,10 @@
+.infoBox{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+}
+.infoBox p {
+    color: black;
+}
